@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-use 5.012;
+use v5.12;
 use warnings;
 
 sub is_nextprime {
@@ -10,6 +10,7 @@ sub is_nextprime {
    }
 }
 
+#Using the fact that any primes greater than 3 must be type of 6n+1 or 6n-1
 sub nth_prime {
    my ($target, $count) = (shift, 3);
    my @primes = (2, 3, 5);
