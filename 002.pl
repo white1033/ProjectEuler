@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-use 5.012;
+use v5.12;
 use warnings;
 
 my ($fib1, $fib2) = (1, 1);
