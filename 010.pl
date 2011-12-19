@@ -1,21 +1,34 @@
 #!/usr/bin/perl
 use v5.12;
 use warnings;
+use List::Util qw{sum};
 
-my @primes = (2, 3, 5);
-my ($num, $sum, $magic) = (5, 10, 1);
+#use the sieve of Eratosthenes
+sub primes_sieve {
+    #find all primes in [2, limit).
+    my $limit = shift;
 
-#Again, use the fact that any primes greater than 3 must be type of 6n+1 or 6n-1
-while ($num < 2_000_000) {
-    $num += 3 - $magic;
-    $magic = -$magic;
-    foreach my $prime (@primes) {
-        if ($prime**2 > $num) {
-            push @primes, $num;
-            $sum += $num;
+    #trivial case
+    return () if $limit < 2;
+    return (2) if $limit == 2;
+
+    #only find primes in odd numbers
+    my @sieve = grep { $_ % 2 } 3 .. $limit;
+    my $check_limit = sqrt $limit;
+    my ($num, $idx) = (3, 0);
+    while ($num < $check_limit) {
+        if ($sieve[$idx]) {
+            my $tmp = ($num**2 - 3) / 2;
+            $sieve[$tmp] = 0;
+            while ($tmp < scalar @sieve) {
+                $sieve[$tmp] = 0;
+                $tmp += $num;
+            }
         }
-        last if $num % $prime == 0;
+        $idx++;
+        $num = 2 * $idx + 3;
     }
+    return (2, grep { $_ } @sieve)
 }
 
-say $sum;
+say sum(primes_sieve(2_000_000));
