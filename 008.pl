@@ -7,7 +7,7 @@ my ($max, $prod, @nums) = (0);
 
 while (<DATA>) {
     chomp;
-    @nums = (@nums, split //, $_);
+    push @nums, split(//, $_);
 }
 
 foreach my $x (0 .. $#nums-4) {
