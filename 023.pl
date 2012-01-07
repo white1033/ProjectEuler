@@ -26,10 +26,14 @@ sub sum_of_divisors {
 my $limit = 20162;
 my $sum;
 my %abn;
+my @keys_of_abn;
 
 foreach my $num (1 .. $limit) {
-    if (sum_of_divisors($num) > 2 * $num) { ++$abn{$num} }
-    foreach my $x (keys %abn) {
+    if (sum_of_divisors($num) > 2 * $num) {
+        ++$abn{$num};
+        push @keys_of_abn, $num;
+    }
+    foreach my $x (@keys_of_abn) {
         if (($num - $x) ~~ %abn) {
             $sum += $num;
             last;
