@@ -20,7 +20,7 @@ while (<$fh>) {
 
 @names = sort @names;
 my $sum;
-foreach my $x (0 .. $#names) {
-    $sum += ($x + 1) * name_score($names[$x]);
+while (my ($idx, $name) = each @names) {
+    $sum += ($idx + 1) * name_score($name);
 }
 say $sum;
