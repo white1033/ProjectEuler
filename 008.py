@@ -1,23 +1,7 @@
-#!/usr/bin/perl
-use v5.12;
-use warnings;
-use List::Util qw{reduce};
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 
-my ($max, $prod, @nums) = (0); 
-
-while (<DATA>) {
-    chomp;
-    push @nums, split(//, $_);
-}
-
-foreach my $x (0 .. $#nums-4) {
-    $prod = reduce { $a * $b } @nums[$x .. $x+4];
-    $max > $prod || ($max = $prod);
-}
-
-say $max;
-
-__DATA__
+test_input = '''
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -38,3 +22,14 @@ __DATA__
 84580156166097919133875499200524063689912560717606
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
+'''
+Max, prod = 0, 0
+
+test_input = ''.join(test_input.split('\n'))
+for i in xrange(0, len(test_input)-5):
+    prod = reduce(lambda x, y: x*y, map(int, test_input[i:i+5]))
+    if prod > Max:
+	Max = prod
+
+print(Max)
+
