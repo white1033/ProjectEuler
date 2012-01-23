@@ -39,3 +39,43 @@ def binomial(n, k):
     for x in xrange(min(k, n - k)):
 	value = value * (n - x) / (x + 1)
     return value
+
+def factorial(n):
+    return reduce(lambda x, y: x * y, xrange(1, n + 1), 1)
+
+def divisor_sum(n):
+    prime = 2
+    div_sum = 1
+    while prime**2 <= n and n > 1:
+        if not (n % prime):
+            tmp = prime**2
+            n /= prime
+            while not (n % prime):
+                tmp *= prime
+                n /= prime
+
+            div_sum *= tmp - 1
+            div_sum /= prime - 1
+
+        if prime == 2: 
+            prime = 3
+        else:
+            prime += 2
+
+    if n > 1: div_sum *= (n + 1)
+    return div_sum
+
+def proper_divisor_sum(n):
+    return divisor_sum(n) - n
+
+def dynamic(func):
+    cache = {}
+
+    def wrapper(*args):
+        try:
+            return cache[args]
+        except KeyError:
+            cache[args] = func(*args)
+            pass
+        return cache[args]
+    return wrapper
