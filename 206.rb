@@ -8,4 +8,4 @@ while true
   upper_bound_sqrt -= 2
 end
 
-puts upper_bound_sqrt*10
+puts upper_bound_sqrt * 10
