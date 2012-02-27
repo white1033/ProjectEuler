@@ -10,7 +10,8 @@ primes = primes_sieve(1000)
 while num_of_div_sofar <= 500:
     num += 1
     nextnum = num
-    if not nextnum % 2: nextnum /= 2
+    if not nextnum % 2:
+        nextnum /= 2
     tmp_num_of_div = 1
     for prime in primes:
         if prime**2 > nextnum:
@@ -22,8 +23,10 @@ while num_of_div_sofar <= 500:
             expon += 1
             nextnum /= prime
 
-        if expon > 1: tmp_num_of_div *= expon
-        if nextnum == 1: break
+        if expon > 1:
+            tmp_num_of_div *= expon
+        if nextnum == 1:
+            break
 
     num_of_div_sofar = num_of_div * tmp_num_of_div
     num_of_div = tmp_num_of_div

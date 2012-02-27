@@ -4,7 +4,7 @@ from euler import is_prime
 def is_primitive(num, prime):
     tmp = prime - 1
     idx = 2
-    while idx ** 2 <= tmp:
+    while idx**2 <= tmp:
         if tmp % idx == 0:
             if pow(num, idx, prime) == 1 or pow(num, tmp / idx, prime) == 1:
                 return False

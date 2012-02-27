@@ -2,7 +2,6 @@
 #-*- coding:utf-8 -*-
 
 target = 1000
-
 limit = int(target**.5)
 for i in xrange(1, limit, 2):
     for j in xrange(i + 1, limit, 2):

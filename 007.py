@@ -2,8 +2,10 @@
 #-*- coding:utf-8 -*-
 def is_nextprime(num, primes):
     for prime in primes:
-        if prime**2 > num: return True
-        if num % prime == 0: return False
+        if prime**2 > num:
+            return True
+        if num % prime == 0:
+            return False
 
 #Using the fact that any primes greater than 3 must be type of 6n+1 or 6n-1
 def nth_prime(n):

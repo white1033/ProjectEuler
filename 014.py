@@ -11,6 +11,7 @@ Max = (0, 0)
 limit = 1000000
 for i in xrange(3, limit, 2):
     chain_length = chain(i)
-    if chain_length > Max[1]: Max = (i, chain_length)
+    if chain_length > Max[1]:
+        Max = (i, chain_length)
  
 print(Max)

@@ -27,9 +27,8 @@ Max, prod = 0, 0
 
 test_input = ''.join(test_input.split('\n'))
 for i in xrange(0, len(test_input)-5):
-    prod = reduce(lambda x, y: x*y, map(int, test_input[i:i+5]))
+    prod = reduce(lambda x, y: x * y, map(int, test_input[i:i + 5]))
     if prod > Max:
 	Max = prod
 
 print(Max)
-
