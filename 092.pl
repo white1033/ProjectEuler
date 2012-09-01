@@ -2,7 +2,6 @@
 use v5.12;
 use warnings;
 use List::Util qw(sum);
-use Data::Dump qw(pp);
 
 sub to_1or89 {
     my $x = shift;
@@ -27,4 +26,4 @@ delete $hash{0};
 while ( my ( $k, $v ) = each %hash ) {
     $ans{ to_1or89($k) } += $v;
 }
-say pp(%ans)
+say $ans{89}
