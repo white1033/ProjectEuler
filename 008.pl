@@ -1,7 +1,19 @@
-#!/usr/bin/env python
-#-*- coding:utf-8 -*-
+#!/usr/bin/perl
+use strict;
+use warnings;
+use List::Util qw{ reduce };
 
-test_input = '''
+my $num = join '', map { chomp; $_ } <DATA>;
+my ( $max, $prod ) = (0);
+
+foreach my $x ( 0 .. length($num) - 4 ) {
+    $prod = reduce { $a * $b } split //, substr( $num, $x, 5 );
+    $max = $prod if $prod > $max;
+}
+
+print $max;
+
+__DATA__
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -22,13 +34,3 @@ test_input = '''
 84580156166097919133875499200524063689912560717606
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450
-'''
-Max, prod = 0, 0
-
-test_input = ''.join(test_input.split('\n'))
-for i in xrange(0, len(test_input)-5):
-    prod = reduce(lambda x, y: x * y, map(int, test_input[i:i + 5]))
-    if prod > Max:
-	Max = prod
-
-print(Max)
