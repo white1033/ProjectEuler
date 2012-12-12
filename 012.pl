@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
-use strict;
+use 5.012;
 use warnings;
-use Math::Prime::FastSieve qw( primes );
+use Math::Prime::Util qw(primes);
 
 my $primes_ref       = primes(1000);
 my $num              = 3;
@@ -32,5 +32,4 @@ while ( $num_of_div_sofar <= 500 ) {
     $num_of_div_sofar = $num_of_div * $tmp_num_of_div;
     $num_of_div       = $tmp_num_of_div;
 }
-print $num * ( $num - 1 ) / 2
-
+say $num * ( $num - 1 ) / 2

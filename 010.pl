@@ -1,7 +1,7 @@
 #!/usr/bin/perl
-use strict;
+use 5.014;
 use warnings;
-use List::Util 'sum';
-use Math::Prime::FastSieve 'primes';
+use List::Util qw(sum);
+use Math::Prime::Util qw(primes);
 
-print sum( @{ primes(2e6) } )
+say sum( @{ primes(2e6) } )

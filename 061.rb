@@ -13,8 +13,8 @@ $nums = Hash.new { |hash, key| hash[key] = [] }
 while true
   n += 1
   (3 .. 8).reverse_each do |x|
-    num = func[x].call(n)
-    if (1000 ... 10000).include?(num)
+    num = func[x].(n)
+    if (1000 .. 9999).include?(num)
       if x == 8
         $type8 << num
       else
