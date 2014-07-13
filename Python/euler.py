@@ -46,3 +46,33 @@ def factor(n):
         result.append((p, e))
     result.sort()
     return result
+
+
+def gcd(a, b):
+    """
+    Returns the greatest common divisor of a and b
+
+    :a: an integer
+    :b: an integer
+    :returns: an integer, the gcd of a and b
+
+    """
+    if a < 0:
+        a = -a
+
+    if b < 0:
+        b = -b
+
+    if a == 0:
+        return b
+
+    if b == 0:
+        return a
+
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+
+def lcm(a, b):
+    return a * b / gcd(a, b)

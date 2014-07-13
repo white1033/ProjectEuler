@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use List::Util qw( max );
 
-my @tri = map { chomp; [ split / / ] } <DATA>;
+my @tri = map { [m/\d+/g] } <DATA>;
 foreach my $y ( reverse 1 .. $#tri ) {
     foreach my $x ( 0 .. $y - 1 ) {
         $tri[ $y - 1 ][$x] += max( $tri[$y][$x], $tri[$y][ $x + 1 ] );

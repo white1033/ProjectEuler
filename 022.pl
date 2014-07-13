@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-use strict;
+use 5.016;
 use warnings;
 use autodie;
 use File::Slurp;
@@ -10,9 +10,9 @@ sub name_score {
 }
 
 my $ans;
-my @sorted_names = sort map { split /,/, s/"//gr } read_file('words.txt');
+my @sorted_names = sort map {m/\w+/g} read_file('words.txt');
 
 while ( my ( $idx, $name ) = each @sorted_names ) {
     $ans += name_score($name) * ( $idx + 1 );
 }
-print $ans
+say $ans

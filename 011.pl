@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use List::Util qw( max );
 
-my @grid = map { chomp; [ split / / ] } <DATA>;
+my @grid = map { [m/\d+/g] } <DATA>;
 my $maxp = 0;
 my ( $row, $col, $token ) = ( 20, 20, 4 );
 my ( $phv, $pd );
