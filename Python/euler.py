@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
+from collections import deque
 
 
 def product(nums):
@@ -76,3 +77,31 @@ def gcd(a, b):
 
 def lcm(a, b):
     return a * b / gcd(a, b)
+
+
+def nth_prime(n):
+    """
+    Return the nth prime
+    """
+    primes = deque([2, 3, 5])
+    count = 3
+    if n < 1:
+        return None
+
+    if n < 5:
+        return primes[n-1]
+
+    dif = [6, 4, 2, 4, 2, 4, 6, 2]
+    num, i = 7, 1
+    while count < n:
+        tmp = (x for x in primes if x * x <= num)
+        for prime in tmp:
+            if num % prime == 0:
+                break
+        else:
+            primes.append(num)
+            count += 1
+
+        num += dif[i % 8]
+        i += 1
+    return primes[-1]
