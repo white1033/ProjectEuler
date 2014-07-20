@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 from collections import deque
+from math import sqrt
 
 
 def product(nums):
@@ -105,3 +106,38 @@ def nth_prime(n):
         num += dif[i % 8]
         i += 1
     return primes[-1]
+
+
+def primes(limit):
+    if limit < 2:
+        return []
+
+    # The array doesn't need to include even numbers
+    lng = ((limit / 2) - 1 + limit % 2)
+
+    # Create array and assume all numbers in array are prime
+    sieve = [True] * (lng + 1)
+
+    # In the following code, you're going to see some funky
+    # bit shifting and stuff, this is just transforming i and j
+    # so that they represent the proper elements in the array.
+    # The transforming is not optimal, and the number of
+    # operations involved can be reduced.
+
+    # Only go up to square root of the limit
+    for i in range(int(sqrt(limit)) >> 1):
+        # Skip numbers that aren’t marked as prime
+        if not sieve[i]:
+            continue
+
+        # Unmark all multiples of i, starting at i**2
+        for j in range((i * (i + 3) << 1) + 3, lng, (i << 1) + 3):
+            sieve[j] = False
+
+    # Don't forget 2!
+    primes = [2]
+
+    # Gather all the primes into a list, leaving out the composite numbers
+    primes.extend([(i << 1) + 3 for i in range(lng) if sieve[i]])
+
+    return primes
