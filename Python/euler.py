@@ -25,7 +25,7 @@ def trial_division(n, bound=None):
 
     dif = [6, 4, 2, 4, 2, 4, 6, 2]
     m, i = 7, 1
-    while m <= bound and m*m <= n:
+    while m <= bound and m * m <= n:
         if n % m == 0:
             return m
         m += dif[i % 8]
@@ -91,7 +91,7 @@ def nth_prime(n):
         return None
 
     if n < 5:
-        return primes[n-1]
+        return primes[n - 1]
 
     dif = [6, 4, 2, 4, 2, 4, 6, 2]
     num, i = 7, 1
@@ -154,3 +154,17 @@ def memoize(obj):
             cache[key] = obj(*args, **kwargs)
         return cache[key]
     return memoizer
+
+
+def proper_divisor_sum(num):
+    result = 1
+    sqrt_num = sqrt(num)
+
+    for x in range(2, int(sqrt_num) + 1):
+        if num % x == 0:
+            result += (x + num / x)
+
+    if sqrt_num.is_integer():
+        result -= sqrt_num
+
+    return result
